@@ -20,8 +20,8 @@ const HomePage = () => {
     const onSnackOpen = (goods) => {
         if(pregoods.length < goods.length){
             setSnackOpen(true)
-            setPregoods([order])
         }
+        setPregoods([...goods])
         return
     }
 
