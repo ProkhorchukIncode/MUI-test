@@ -1,17 +1,17 @@
 import { useState } from "react"
 
-import NavBar from "../../Components/NavBar"
+import Header from "../../Components/Header"
 import Search from "../../Components/Search"
 import GoodsList from "../../Components/GoodsList"
 import Basket from "../../Components/Basket"
 
-import { Container } from "@mui/material"
+import Container from "@mui/material/Container"
 
-const HomePage = ({ourGoods}) => {
+const HomePage = () => {
     const [cardOpen, setCardOpen] = useState(false)
     return(
         <>
-            <NavBar handleCard={()=> setCardOpen(true)}/>
+            <Header handleCard={()=> setCardOpen(true)}/>
             <Container 
                 sx={{mt:'1rem'}}
             >
@@ -21,7 +21,6 @@ const HomePage = ({ourGoods}) => {
             <Basket
                 cardOpen={cardOpen}
                 closeCard={()=> setCardOpen(false)}
-                order={ourGoods}
             />
         </>
     )

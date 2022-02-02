@@ -1,19 +1,23 @@
-import { Drawer } from "@mui/material"
-import { List } from "@mui/material"
-import { ListItem } from "@mui/material"
-import { ListItemIcon } from "@mui/material"
-import { ListItemText } from "@mui/material"
-import { Divider } from "@mui/material"
+import { useSelector } from "react-redux";
+import { selectGoods } from "../../Store/selectors";
 
-import { ShoppingBasket } from "@mui/icons-material"
+import Drawer from "@mui/material/Drawer"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemIcon from "@mui/material/ListItemIcon"
+import ListItemText from "@mui/material/ListItemText"
+import Divider from "@mui/material/Divider"
+
+import ShoppingBasket from "@mui/icons-material/ShoppingBasket"
 
 import OrderItem from "../OrderItem"
 
-const Basket = ({cardOpen, closeCard, order}) => {
+const Basket = ({cardOpen, closeCard}) => {
+    const order = useSelector(selectGoods)
     const summ = order.reduce((acc,el) => {
         return acc + el.price
     },0)
-console.log(summ);
+
     return(
         <Drawer
             anchor="right"

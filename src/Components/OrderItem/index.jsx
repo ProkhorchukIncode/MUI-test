@@ -1,8 +1,12 @@
 import { useDispatch } from "react-redux"
 import { deleteGoods } from "../../Store/goods/goodsReducer"
 
-import { ListItem, IconButton, ListItemText, Card } from "@mui/material"
-import { Close } from "@mui/icons-material"
+import ListItem from "@mui/material/ListItem"
+import IconButton from "@mui/material/IconButton"
+import ListItemText from "@mui/material/ListItemText"
+import Card from "@mui/material/Card"
+
+import Close from "@mui/icons-material/Close"
 
 const OrderItem =({id, name, price}) => {
     const dispatch = useDispatch()

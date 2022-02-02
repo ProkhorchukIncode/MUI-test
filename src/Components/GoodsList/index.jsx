@@ -1,6 +1,6 @@
 import GoodsItem from "../GoodsItem/GoodsItem"
 
-import { Grid } from "@mui/material"
+import Grid from "@mui/material/Grid"
 
 import goods from "../../goods"
 
