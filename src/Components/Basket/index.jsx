@@ -9,7 +9,11 @@ import { ShoppingBasket } from "@mui/icons-material"
 
 import OrderItem from "../OrderItem"
 
-const Basket = ({cardOpen, closeCard, order, removeFromOrder}) => {
+const Basket = ({cardOpen, closeCard, order}) => {
+    const summ = order.reduce((acc,el) => {
+        return acc + el.price
+    },0)
+console.log(summ);
     return(
         <Drawer
             anchor="right"
@@ -38,6 +42,10 @@ const Basket = ({cardOpen, closeCard, order, removeFromOrder}) => {
                             price={price}
                         />
                         })}
+                        <Divider/>
+                        <ListItemText sx={{color: 'red', ml: '10px'}}>
+                            Our order: {summ}$
+                        </ListItemText>
                     </>)
                 :
                     (<ListItemText primary='Not orders' sx={{ml:'1rem'}}/>)
