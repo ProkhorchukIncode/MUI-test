@@ -13,7 +13,8 @@ const GoodsList = () => {
     const [filterGoods, setFilterGoods] = useState([])
 
     const onFiltered = (word)=>{
-        const array = goods.filter(el=> el.name.includes(word))
+        const wordLowerCase = word.toLowerCase()
+        const array = goods.filter(el=> el.name.toLowerCase().includes(wordLowerCase))
         setFilterGoods(array)
     }
     
