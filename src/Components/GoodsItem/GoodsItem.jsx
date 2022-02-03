@@ -7,6 +7,8 @@ import { Grid, Card, CardContent, Typography, Button, CardActions } from "@mui/m
 const GoodsItem = ({id, name, description, price}) => {
     const dispatch = useDispatch()
 
+    const newId = `${Date.now()}+${id}`
+
     return(
         <Grid item xs={12} md={4}>
             <Card id={id}>
@@ -26,7 +28,7 @@ const GoodsItem = ({id, name, description, price}) => {
                 </CardContent>
                 <CardActions>
                     <Button onClick={()=>dispatch(setGoods({
-                        id,
+                        id: newId,
                         name,
                         price,
                     }))}>
