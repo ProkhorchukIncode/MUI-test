@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { selectGoods } from "../../Store/selectors"
 
 import Header from "../../Components/Header"
+import Accions from "../../Components/Accions"
 import Search from "../../Components/Search"
 import GoodsList from "../../Components/GoodsList"
 import Basket from "../../Components/Basket"
@@ -35,6 +36,7 @@ const HomePage = () => {
             <Container 
                 sx={{mt:'1rem'}}
             >
+                <Accions/>
                 <Search/>
                 <GoodsList/>
             </Container>
