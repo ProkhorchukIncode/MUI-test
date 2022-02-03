@@ -20,7 +20,7 @@ const GoodsItem = ({id, name, description, price}) => {
                         Name: {name}
                     </Typography>
                     <Typography>
-                    Description:{description}
+                    Description: {description}
                     </Typography>
                     <Typography>
                     Price: {price}$

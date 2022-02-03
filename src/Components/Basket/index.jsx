@@ -11,6 +11,7 @@ import Divider from "@mui/material/Divider"
 import ShoppingBasket from "@mui/icons-material/ShoppingBasket"
 
 import OrderItem from "../OrderItem"
+import ModalOrder from "../ModalOrder";
 
 const Basket = ({cardOpen, closeCard}) => {
     const order = useSelector(selectGoods)
@@ -55,6 +56,7 @@ const Basket = ({cardOpen, closeCard}) => {
                     (<ListItemText primary='Not orders' sx={{ml:'1rem'}}/>)
                 }
             </List>
+            <ModalOrder/>
         </Drawer>
     )
 }
