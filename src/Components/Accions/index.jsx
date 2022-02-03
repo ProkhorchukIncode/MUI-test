@@ -5,7 +5,7 @@ import GoodsItem from "../GoodsItem/GoodsItem"
 import Card from "@mui/material/Card"
 import Grid from "@mui/material/Grid"
 import CardHeader from "@mui/material/CardHeader"
-import MobileStepper from "@mui/material/MobileStepper"
+import Box from "@mui/material/Box"
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -15,14 +15,23 @@ import accions from "../../accions"
 const Accions = () => {
     const [activeStep, setActiveStep] = useState(0);
 
-    const maxSteps = accions.length
     const accionCard= accions[activeStep]
+    const firstAccionCard = accions[0]
+    const lastAccionCard = accions[accions.length-1]
+    const prevAccionCard = accions[activeStep-1]
+    const nextAccionCard = accions[activeStep+1]
 
     const handleNext = () => {
+        if(activeStep===accions.length-1){
+            return setActiveStep(0)
+        }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
     
     const handleBack = () => {
+        if(activeStep===0){
+            return setActiveStep(accions.length-1)
+        }
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
@@ -32,18 +41,17 @@ const Accions = () => {
             <Grid container spacing={4} sx={{p: 2}}>
                 {activeStep===0 ?
                     <GoodsItem
-                    sx={{}}
-                    id={accions[accions.length-1].id}
-                    name={accions[accions.length-1].name}
-                    description={accions[accions.length-1].description}
-                    price={accions[accions.length-1].price}
+                    id={lastAccionCard.id}
+                    name={lastAccionCard.name}
+                    description={lastAccionCard.description}
+                    price={lastAccionCard.price}
                     />
                     :
                     <GoodsItem
-                    id={accions[activeStep-1].id}
-                    name={accions[activeStep-1].name}
-                    description={accions[activeStep-1].description}
-                    price={accions[activeStep-1].price}
+                    id={prevAccionCard.id}
+                    name={prevAccionCard.name}
+                    description={prevAccionCard.description}
+                    price={prevAccionCard.price}
                     />
                 }
                 <GoodsItem
@@ -54,39 +62,36 @@ const Accions = () => {
                 />
                 {activeStep===accions.length-1 ?
                     <GoodsItem
-                    id={accions[0].id}
-                    name={accions[0].name}
-                    description={accions[0].description}
-                    price={accions[0].price}
+                    id={firstAccionCard.id}
+                    name={firstAccionCard.name}
+                    description={firstAccionCard.description}
+                    price={firstAccionCard.price}
                     />
                     :
                     <GoodsItem
-                    id={accions[activeStep+1].id}
-                    name={accions[activeStep+1].name}
-                    description={accions[activeStep+1].description}
-                    price={accions[activeStep+1].price}
+                    id={nextAccionCard.id}
+                    name={nextAccionCard.name}
+                    description={nextAccionCard.description}
+                    price={nextAccionCard.price}
                     />
                 }  
             </Grid>
-            <MobileStepper 
-                position="static"
-                steps={maxSteps}
-                activeStep={activeStep}
-                nextButton={
-                    <Button
-                    size="small"
-                    onClick={handleNext}
-                    disabled={activeStep === maxSteps - 1}
-                    >
-                        <KeyboardArrowRight />
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        <KeyboardArrowLeft />
-                    </Button>
-                }
-            />
+            <Box sx={{display: 'flex'}}>
+                <Button
+                size="small"
+                onClick={handleNext}
+                sx={{flexGrow: 1}}
+                >
+                    <KeyboardArrowLeft />
+                </Button>
+                <Button 
+                size="small" 
+                onClick={handleBack} 
+                sx={{flexGrow: 1}}
+                >
+                    <KeyboardArrowRight />
+                </Button>
+            </Box>
         </Card>
     )
 }
