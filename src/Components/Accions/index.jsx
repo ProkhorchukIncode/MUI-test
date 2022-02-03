@@ -2,9 +2,10 @@ import { useState } from "react"
 
 import GoodsItem from "../GoodsItem/GoodsItem"
 
-import { Card, Grid, CardHeader } from "@mui/material"
-import { MobileStepper } from "@mui/material"
-import { Box } from "@mui/material"
+import Card from "@mui/material/Card"
+import Grid from "@mui/material/Grid"
+import CardHeader from "@mui/material/CardHeader"
+import MobileStepper from "@mui/material/MobileStepper"
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
