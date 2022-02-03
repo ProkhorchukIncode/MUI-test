@@ -5,12 +5,31 @@ import { selectSearch } from "../../Store/selectors"
 import GoodsItem from "../GoodsItem/GoodsItem"
 
 import Grid from "@mui/material/Grid"
+import Pagination from "@mui/material/Pagination"
 
 import goods from "../../goods"
 
 const GoodsList = () => {
     const search = useSelector(selectSearch)
     const [filterGoods, setFilterGoods] = useState([])
+    const [page, setPage] = useState(1);
+    const perPage = 3
+
+    const paginationCount = filterGoods.length/perPage
+    let paginationedGoods = filterGoods.slice(0, perPage)
+
+    const getPage = (page) => {
+        if(page===1){
+            return paginationedGoods = filterGoods.slice(0, perPage)
+        }
+        const pageInd = (page*perPage)-perPage
+        return paginationedGoods = filterGoods.slice(pageInd, pageInd+perPage)
+    }
+    
+    const handleChangePage = (event, page) => {
+        setPage(page);
+        getPage(page)
+    };
 
     const onFiltered = (word)=>{
         const wordLowerCase = word.toLowerCase()
@@ -33,6 +52,19 @@ const GoodsList = () => {
                 key={id}
                 />
             })}
+            {paginationCount>1 ? 
+                (<Pagination 
+                    variant="outlined"
+                    count={paginationCount}
+                    showFirstButton 
+                    showLastButton
+                    page={page}
+                    onChange={handleChangePage}
+                    sx={{mt:2, ml: 'auto', mr: 'auto'}}
+                />)
+                :
+                <></>
+            }
         </Grid>
     )
 }
