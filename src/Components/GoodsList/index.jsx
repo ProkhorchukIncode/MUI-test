@@ -6,6 +6,7 @@ import GoodsItem from "../GoodsItem/GoodsItem"
 
 import Grid from "@mui/material/Grid"
 import Pagination from "@mui/material/Pagination"
+import Box from "@mui/material/Box"
 
 import goods from "../../goods"
 
@@ -16,7 +17,7 @@ const GoodsList = () => {
     const [paginationedGoods, setPaginationedGoods] = useState(goods.slice(0, perPage))
     const [page, setPage] = useState(1);
 
-    const paginationCount = filterGoods.length/perPage
+    const paginationCount = Math.ceil(filterGoods.length/perPage)
     const getPage = (page, array) => {
         if(page===1 || array.length<=3){
             return setPaginationedGoods(array.slice(0, perPage))
@@ -41,31 +42,34 @@ const GoodsList = () => {
         onFiltered(search)
     }, [search])
 
-    return(
-        <Grid container spacing={2}>
-            {paginationedGoods?.map(({id, name, description, price})=>{
-                return <GoodsItem
-                id={id}
-                name={name}
-                description={description}
-                price={price}
-                key={id}
-                />
-            })}
-            {paginationCount>1 ? 
-                (<Pagination 
-                    variant="outlined"
-                    count={paginationCount}
-                    showFirstButton 
-                    showLastButton
-                    page={page}
-                    onChange={handleChangePage}
-                    sx={{mt:2, ml: 'auto', mr: 'auto'}}
-                />)
-                :
-                <></>
-            }
-        </Grid>
+    return(<>
+            <Grid container spacing={2}>
+                {paginationedGoods?.map(({id, name, description, price})=>{
+                    return <GoodsItem
+                    id={id}
+                    name={name}
+                    description={description}
+                    price={price}
+                    key={id}
+                    />
+                })}
+            </Grid>
+            <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                {paginationCount>1 ? 
+                    (<Pagination 
+                        variant="outlined"
+                        count={paginationCount}
+                        showFirstButton 
+                        showLastButton
+                        page={page}
+                        onChange={handleChangePage}
+                        sx={{mt:2, ml: 'auto', mr: 'auto'}}
+                    />)
+                    :
+                    <></>
+                }
+            </Box>
+        </>
     )
 }
 export default GoodsList

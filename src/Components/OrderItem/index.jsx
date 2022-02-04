@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux"
 import { deleteGoods } from "../../Store/goods/goodsReducer"
+import styled from "styled-components"
 
 import ListItem from "@mui/material/ListItem"
 import IconButton from "@mui/material/IconButton"
@@ -8,12 +9,19 @@ import Card from "@mui/material/Card"
 
 import Close from "@mui/icons-material/Close"
 
+const CardBox = styled(Card)`
+    &&{
+        padding: 10px;
+        width: 100%;
+    }
+`
+
 const OrderItem =({id, name, price}) => {
     const dispatch = useDispatch()
 
     return(
         <ListItem>
-            <Card sx={{p: '10px'}}>
+            <CardBox>
                 <ListItemText>
                     {name}
                 </ListItemText>
@@ -23,7 +31,7 @@ const OrderItem =({id, name, price}) => {
                 <IconButton onClick={()=>dispatch(deleteGoods(id))}>
                     <Close/>
                 </IconButton>
-            </Card>
+            </CardBox>
         </ListItem>
     )
 }

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import styled from "styled-components"
 
 import GoodsItem from "../GoodsItem/GoodsItem"
 
@@ -11,6 +12,46 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 import accions from "../../accions"
+
+const CardStyled = styled(Card)`
+    && {
+        background: linear-gradient(90deg, rgba(36,0,28,0.38139005602240894) 0%, rgba(228,165,165,1) 58%, rgba(224,221,151,1) 100%);
+        padding: 0 20px;
+        margin-bottom: 20px;
+    }
+`
+const CardTitle = styled(CardHeader)`
+    && {
+        text-align: center;
+        color: green;
+    }
+`
+const GridContainer = styled(Grid)`
+    && {
+        margin-top: -32px;
+        width: calc(100% + 32px);
+        margin-left: -32px;
+        padding: 16px;
+    }
+`
+const FlexBox = styled(Box)`
+    && {
+        display: flex;
+        justify-content: space-around;
+    }
+`
+const NavigationButton = styled(Button)`
+    && {
+        padding: 4px;
+        box-sizing: border-box;
+        min-width: 32px;
+        height: 32px;
+        margin: 0 0 10px 0;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.23);
+        color: green;
+    }
+`
 
 const Accions = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -36,22 +77,24 @@ const Accions = () => {
     };
 
     return (
-        <Card sx={{pl: 2, pr: 2, mb: 2}}>
-            <CardHeader title='Accions' sx={{textAlign: 'center', color: 'green'}}/>
-            <Grid container spacing={4} sx={{p: 2}}>
+        <CardStyled>
+            <CardTitle title='Accions'/>
+            <GridContainer container spacing={4} >
                 {activeStep===0 ?
                     <GoodsItem
                     id={lastAccionCard.id}
                     name={lastAccionCard.name}
                     description={lastAccionCard.description}
                     price={lastAccionCard.price}
+                    opacity={'shadow'}
                     />
-                    :
+                :
                     <GoodsItem
                     id={prevAccionCard.id}
                     name={prevAccionCard.name}
                     description={prevAccionCard.description}
                     price={prevAccionCard.price}
+                    opacity={'shadow'}
                     />
                 }
                 <GoodsItem
@@ -66,33 +109,31 @@ const Accions = () => {
                     name={firstAccionCard.name}
                     description={firstAccionCard.description}
                     price={firstAccionCard.price}
+                    opacity={'shadow'}
                     />
-                    :
+                :
                     <GoodsItem
                     id={nextAccionCard.id}
                     name={nextAccionCard.name}
                     description={nextAccionCard.description}
                     price={nextAccionCard.price}
+                    opacity={'shadow'}
                     />
                 }  
-            </Grid>
-            <Box sx={{display: 'flex'}}>
-                <Button
-                size="small"
+            </GridContainer>
+            <FlexBox>
+                <NavigationButton
                 onClick={handleNext}
-                sx={{flexGrow: 1}}
                 >
                     <KeyboardArrowLeft />
-                </Button>
-                <Button 
-                size="small" 
+                </NavigationButton>
+                <NavigationButton 
                 onClick={handleBack} 
-                sx={{flexGrow: 1}}
                 >
                     <KeyboardArrowRight />
-                </Button>
-            </Box>
-        </Card>
+                </NavigationButton>
+            </FlexBox>
+        </CardStyled>
     )
 }
 export default Accions

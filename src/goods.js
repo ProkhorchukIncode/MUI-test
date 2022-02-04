@@ -71,6 +71,12 @@ const goods=[
         description: '400',
         price: 40000
     },
+    {
+        id: 500,
+        name: 'Name500',
+        description: '500',
+        price: 10000
+    },
 ]
 
 export default goods

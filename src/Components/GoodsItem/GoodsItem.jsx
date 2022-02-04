@@ -1,24 +1,46 @@
 import { useDispatch } from "react-redux"
+import styled from "styled-components"
 
 import { setGoods } from "../../Store/goods/goodsReducer"
 
-import { Grid, Card, CardContent, Typography, Button, CardActions } from "@mui/material"
+import Grid from "@mui/material/Grid"
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import Typography from "@mui/material/Typography"
+import Button from "@mui/material/Button"
+import CardActions from "@mui/material/CardActions"
 
-const GoodsItem = ({id, name, description, price}) => {
+const CardBox = styled(Card)`
+    &&{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        background-color: ${(props)=> props.opacity=== 'shadow' ? '#e3e3e3' : ''};
+        opacity: ${(props)=> props.opacity=== 'shadow' ? '0.7' : ''};
+    }
+`
+
+const CardTitle = styled(Typography)`
+    &&{
+        font-weight: 500;
+        font-size: 1.25rem;
+        line-height: 1.6;
+    }
+`
+
+const GoodsItem = ({id, name, description, price, opacity}) => {
     const dispatch = useDispatch()
 
     const newId = `${Date.now()}+${id}`
 
     return(
-        <Grid item xs={12} md={4}>
-            <Card id={id}>
+        <Grid item md={4}>
+            <CardBox id={id} opacity={opacity}>
                 <CardContent>
-                    <Typography
-                        variant="h6"
-                        component='h5'
-                    >
+                    <CardTitle>
                         Name: {name}
-                    </Typography>
+                    </CardTitle>
                     <Typography>
                     Description: {description}
                     </Typography>
@@ -35,7 +57,7 @@ const GoodsItem = ({id, name, description, price}) => {
                         Send
                     </Button>
                 </CardActions>
-            </Card>
+            </CardBox>
         </Grid>
     )
 }
