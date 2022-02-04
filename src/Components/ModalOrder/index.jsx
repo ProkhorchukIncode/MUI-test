@@ -47,17 +47,15 @@ const ModalOrder = () => {
     const [payment, setPayment] = useState('cash')
     const [discount, setDiscount] = useState(false)
     const [dateOfBirth, setDateOfBirth] = useState('2017-05-24')
-
+console.log(payment);
     const order = useSelector(selectGoods)
 
     const summ = order.reduce((acc,el) => {
         return acc + el.price
     },0)
     
-    const handlePayment = (newPayment) => {
-        if (newPayment !== null) {
-            setPayment(newPayment);
-        } 
+    const handlePayment = (event) => {
+        setPayment(event.target.value);
     }
 
     const handleDelivery = (event, newDelivery) => {

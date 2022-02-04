@@ -56,7 +56,11 @@ const Basket = ({cardOpen, closeCard}) => {
                     (<ListItemText primary='Not orders' sx={{ml:'1rem'}}/>)
                 }
             </List>
-            <ModalOrder/>
+            {order.length ?
+                (<ModalOrder/>)
+            :
+                (<></>)
+            }
         </Drawer>
     )
 }
