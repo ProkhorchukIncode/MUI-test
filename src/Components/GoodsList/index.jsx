@@ -12,29 +12,29 @@ import goods from "../../goods"
 const GoodsList = () => {
     const search = useSelector(selectSearch)
     const [filterGoods, setFilterGoods] = useState([])
-    const [page, setPage] = useState(1);
     const perPage = 3
+    const [paginationedGoods, setPaginationedGoods] = useState(goods.slice(0, perPage))
+    const [page, setPage] = useState(1);
 
     const paginationCount = filterGoods.length/perPage
-    let paginationedGoods = filterGoods.slice(0, perPage)
-
-    const getPage = (page) => {
-        if(page===1){
-            return paginationedGoods = filterGoods.slice(0, perPage)
+    const getPage = (page, array) => {
+        if(page===1 || array.length<=3){
+            return setPaginationedGoods(array.slice(0, perPage))
         }
         const pageInd = (page*perPage)-perPage
-        return paginationedGoods = filterGoods.slice(pageInd, pageInd+perPage)
+        return setPaginationedGoods(array.slice(pageInd, pageInd+perPage))
     }
     
     const handleChangePage = (event, page) => {
         setPage(page);
-        getPage(page)
+        getPage(page, filterGoods)
     };
 
     const onFiltered = (word)=>{
         const wordLowerCase = word.toLowerCase()
         const array = goods.filter(el=> el.name.toLowerCase().includes(wordLowerCase))
         setFilterGoods(array)
+        getPage(page, array)
     }
     
     useEffect(()=>{
@@ -43,7 +43,7 @@ const GoodsList = () => {
 
     return(
         <Grid container spacing={2}>
-            {filterGoods?.map(({id, name, description, price})=>{
+            {paginationedGoods?.map(({id, name, description, price})=>{
                 return <GoodsItem
                 id={id}
                 name={name}
