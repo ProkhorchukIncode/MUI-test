@@ -15,6 +15,11 @@ const CardBox = styled(Card)`
         width: 100%;
     }
 `
+const PriceText = styled(ListItemText)`
+    &&{
+        color: red:
+    }
+`
 
 const OrderItem =({id, name, price}) => {
     const dispatch = useDispatch()
@@ -25,9 +30,9 @@ const OrderItem =({id, name, price}) => {
                 <ListItemText>
                     {name}
                 </ListItemText>
-                <ListItemText sx={{color: 'red'}}>
+                <PriceText>
                     {price}$
-                </ListItemText>
+                </PriceText>
                 <IconButton onClick={()=>dispatch(deleteGoods(id))}>
                     <Close/>
                 </IconButton>

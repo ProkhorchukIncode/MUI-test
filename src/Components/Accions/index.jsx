@@ -24,6 +24,7 @@ const CardTitle = styled(CardHeader)`
     && {
         text-align: center;
         color: green;
+        font-size: 3rem;
     }
 `
 const GridContainer = styled(Grid)`

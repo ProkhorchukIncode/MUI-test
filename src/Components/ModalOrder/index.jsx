@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
 import { selectGoods } from "../../Store/selectors";
 import { clearGoods } from "../../Store/goods/goodsReducer";
 
@@ -35,7 +36,13 @@ const style = {
     borderRadius: '5%',
     boxShadow: 24,
     p: 4,
-  };
+};
+
+const Input = styled(TextField)`
+    && {
+        margin-bottom: 1rem;
+    }
+`
 
 const ModalOrder = () => {
     const dispatch = useDispatch()
@@ -127,33 +134,29 @@ const ModalOrder = () => {
                     <Typography variant='h3' component='h2' sx={{textAlign: 'center', mb: 2}}>
                         Checkout
                     </Typography>
-                    <TextField
+                    <Input
                         name='name'
                         label='Your name'
                         fullWidth
-                        sx={{mb:'1rem'}}
                         onChange={onChange}
                     />
-                    <TextField
+                    <Input
                         name='address'
                         label='Your address'
                         fullWidth
-                        sx={{mb:'1rem'}}
                         onChange={onChange}
                     />
-                    <TextField
+                    <Input
                         name='email'
                         type='email'
                         label='Your email'
                         fullWidth
-                        sx={{mb:'1rem'}}
                         onChange={onChange}
                     />
-                    <TextField
+                    <Input
                         name='phone'
                         label='Your phone'
                         fullWidth
-                        sx={{mb:'1rem'}}
                         onChange={onChange}
                     />
 

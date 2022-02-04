@@ -12,6 +12,8 @@ import ShoppingBasket from "@mui/icons-material/ShoppingBasket"
 
 import OrderItem from "../OrderItem"
 import ModalOrder from "../ModalOrder";
+import OurSumm from "../OurSumm";
+import NotOrders from "../NotOrders";
 
 const Basket = ({cardOpen, closeCard}) => {
     const order = useSelector(selectGoods)
@@ -48,12 +50,10 @@ const Basket = ({cardOpen, closeCard}) => {
                         />
                         })}
                         <Divider/>
-                        <ListItemText sx={{color: 'red', ml: '10px'}}>
-                            Our order: {summ}$
-                        </ListItemText>
+                        <OurSumm summ={summ}/>
                     </>)
                 :
-                    (<ListItemText primary='Not orders' sx={{ml:'1rem'}}/>)
+                    (<NotOrders/>)
                 }
             </List>
             {order.length ?
