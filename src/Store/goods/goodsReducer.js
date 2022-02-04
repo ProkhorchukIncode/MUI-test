@@ -8,6 +8,11 @@ export const deleteGoods = (payload) => ({
     payload: payload
 })
 
+export const clearGoods = (payload) => ({
+    type: 'CLEAR_GOODS',
+    payload: payload
+})
+
 const initialState = {
     goods: [],
 }
@@ -23,6 +28,11 @@ const goodsReducer = (state=initialState, action) => {
             return {
                 ...state,
                 goods: state.goods.filter(el=> el.id!==action.payload)
+            }
+        case 'CLEAR_GOODS':
+            return {
+                ...state,
+                goods: []
             }
         default:
             return state

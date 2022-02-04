@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectGoods } from "../../Store/selectors";
+import { clearGoods } from "../../Store/goods/goodsReducer";
 
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
@@ -37,6 +38,7 @@ const style = {
   };
 
 const ModalOrder = () => {
+    const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     const [checked, setChecked] = useState(false);
     const [name, setName] = useState('')
@@ -47,7 +49,7 @@ const ModalOrder = () => {
     const [payment, setPayment] = useState('cash')
     const [discount, setDiscount] = useState(false)
     const [dateOfBirth, setDateOfBirth] = useState('2017-05-24')
-console.log(payment);
+
     const order = useSelector(selectGoods)
 
     const summ = order.reduce((acc,el) => {
@@ -109,7 +111,9 @@ console.log(payment);
             dateOfBirth,
             summ
         }
-        return console.log(newObj);
+        console.log(newObj);
+        setOpen(false);
+        dispatch(clearGoods())
     }
 
     return (
